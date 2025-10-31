@@ -24,9 +24,9 @@ const getRequestById = async (req, res) => {
 }
 
 const createRequest = async (req, res) => {
-    const { name, value, receipt_path, categories_id } = req.body;
+    const { name, value, receipt_path, status_id, categories_id } = req.body;
     try {
-        const result = await pool.query('INSERT INTO tb_requests (name, value, receipt_path, categories_id) VALUES ($1, $2, $3, $4) RETURNING *',
+        const result = await pool.query('INSERT INTO tb_requests (name, value, receipt_path, status_id, categories_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [name, value, receipt_path, status_id, categories_id]);
         res.status(201).json(result.rows[0]);
     } catch (err) {
